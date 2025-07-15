@@ -1,0 +1,316 @@
+:root {
+  --color-primary: #0ca678;
+  --color-secondary: #087f5b;
+  --color-danger: #e03131;
+  --color-success: #2f9e44;
+  --color-text: #212529;
+  --color-bg: #f8f9fa;
+  --color-bg-secondary: #ffffff;
+  --color-border: #e9ecef;
+  --gradient-primary: linear-gradient(135deg, #0ca678 0%, #087f5b 100%);
+  --border-radius: 16px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: 
+    radial-gradient(at 40% 20%, rgba(12, 166, 120, 0.1) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(8, 127, 91, 0.1) 0px, transparent 50%);
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 2.5rem;
+  height: calc(100vh - 4rem);
+}
+
+.sidebar {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.friends-list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.friend-item {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  transition: var(--transition);
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.friend-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.friend-item.selected {
+  border: 2px solid var(--color-primary);
+  background-color: #f3f0ff;
+}
+
+.friend-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  grid-row: span 2;
+}
+
+.friend-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.balance {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.balance.red {
+  color: var(--color-danger);
+}
+
+.balance.green {
+  color: var(--color-success);
+}
+
+.button {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(12, 166, 120, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  box-shadow: none;
+}
+
+.button.danger {
+  background: linear-gradient(135deg, #e03131 0%, #c92a2a 100%);
+  color: white;
+  border: none;
+}
+
+.button.danger:hover {
+  background: linear-gradient(135deg, #c92a2a 0%, #b52525 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(224, 49, 49, 0.3);
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(12, 166, 120, 0.3);
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  transition: var(--transition);
+}
+
+.button:hover::after {
+  transform: translateX(0);
+}
+
+.button.secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.form-add-friend, .form-split-bill {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-split-bill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(12, 166, 120, 0.05) 0%, rgba(8, 127, 91, 0.05) 100%);
+  pointer-events: none;
+}
+
+.form-split-bill {
+  height: fit-content;
+}
+
+.form-add-friend h2, .form-split-bill h2 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+input, select {
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: 1px solid #dee2e6;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.expense-summary {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: var(--border-radius);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stat-card {
+  background-color: var(--color-bg-secondary);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.friend-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.friend-item .button-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
